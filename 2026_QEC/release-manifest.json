@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "course": "quantum_error_correction",
+  "label": "2026_QEC-r1",
+  "created": "2026-10-21T19:17:16.957Z",
+  "engineVersion": "1.0.0",
+  "source": {
+    "commit": "1b5003f84ab780c75bc7b67698fd46e075112f39",
+    "dirty": false
+  },
+  "modules": [
+    {
+      "id": "m1",
+      "revision": "sha256:271b80b0bff88acf"
+    },
+    {
+      "id": "m2",
+      "revision": "sha256:58c8a9197aa8e51d"
+    },
+    {
+      "id": "m3",
+      "revision": "sha256:4818da3c35b1ef82"
+    },
+    {
+      "id": "m4",
+      "revision": "sha256:00cadd1513d13934"
+    },
+    {
+      "id": "m5",
+      "revision": "sha256:6893bb6fed5a5f89"
+    }
+  ],
+  "questionsUrl": "https://docs.google.com/document/d/1dp_MXEA5aFQJ1om-RrPk7rns6-5DhuFm/edit",
+  "brand": "Stanford LINQS",
+  "includeRoadmap": false,
+  "pages": [
+    "index.html",
+    "m1.html",
+    "m2.html",
+    "m3.html",
+    "m4.html",
+    "m5.html",
+    "review.html",
+    "notebook.html",
+    "references.html",
+    "conventions.html",
+    "symbols.html"
+  ],
+  "assets": 108,
+  "deny": ["\u0041\u0050\u0032\u0032\u0038", "\u0053\u0048\u0041\u002d\u0032\u0035\u0036", "\u006c\u0069\u0074\u005f\u0072\u0065\u0066\u0073", "\u0073\u0061\u0066\u0061\u0076\u0069"]
+}

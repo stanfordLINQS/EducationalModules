@@ -1,0 +1,479 @@
+{
+  "schema_version": 1,
+  "course": "quantum_error_correction",
+  "references": [
+    {
+      "id": "aaronson_gottesman_2004",
+      "roles": [
+        "citation"
+      ],
+      "uses": 2
+    },
+    {
+      "id": "arute_supremacy_2019",
+      "roles": [
+        "citation"
+      ],
+      "uses": 1
+    },
+    {
+      "id": "bausch_alphaqubit_arxiv_2023",
+      "roles": [
+        "citation",
+        "crosswalk"
+      ],
+      "uses": 4
+    },
+    {
+      "id": "bennett_divincenzo_smolin_wootters_1996",
+      "roles": [
+        "citation"
+      ],
+      "uses": 1
+    },
+    {
+      "id": "bombin_intro_topological_codes_2013",
+      "roles": [
+        "citation"
+      ],
+      "uses": 5
+    },
+    {
+      "id": "bombin_martin_delgado_2007_optimal",
+      "roles": [
+        "citation",
+        "crosswalk"
+      ],
+      "uses": 2
+    },
+    {
+      "id": "bravyi_kitaev_boundary_1998",
+      "roles": [
+        "citation",
+        "crosswalk"
+      ],
+      "uses": 2
+    },
+    {
+      "id": "bravyi_suchara_vargo_2014",
+      "roles": [
+        "citation"
+      ],
+      "uses": 3
+    },
+    {
+      "id": "browne_problem_sheet_1",
+      "roles": [
+        "citation",
+        "example"
+      ],
+      "uses": 4
+    },
+    {
+      "id": "browne_problem_sheet_2",
+      "roles": [
+        "citation"
+      ],
+      "uses": 5
+    },
+    {
+      "id": "browne_problem_sheet_3",
+      "roles": [
+        "citation"
+      ],
+      "uses": 1
+    },
+    {
+      "id": "browne_topological_codes_2014",
+      "roles": [
+        "citation",
+        "crosswalk",
+        "governing"
+      ],
+      "uses": 17
+    },
+    {
+      "id": "calderbank_rains_shor_sloane_1998",
+      "roles": [
+        "citation",
+        "further"
+      ],
+      "uses": 3
+    },
+    {
+      "id": "calderbank_shor_1996",
+      "roles": [
+        "citation",
+        "convention",
+        "crosswalk"
+      ],
+      "uses": 6
+    },
+    {
+      "id": "chen_gu_wen_2010_local_unitary",
+      "roles": [
+        "citation"
+      ],
+      "uses": 1
+    },
+    {
+      "id": "delfosse_nickerson_union_find_2021",
+      "roles": [
+        "citation",
+        "crosswalk"
+      ],
+      "uses": 3
+    },
+    {
+      "id": "delfosse_zemor_peeling_2020",
+      "roles": [
+        "citation"
+      ],
+      "uses": 2
+    },
+    {
+      "id": "dennis_kitaev_landahl_preskill_2002",
+      "roles": [
+        "citation",
+        "crosswalk",
+        "further"
+      ],
+      "uses": 21
+    },
+    {
+      "id": "devitt_qec_beginners_2013",
+      "roles": [
+        "citation"
+      ],
+      "uses": 2
+    },
+    {
+      "id": "fowler_surface_code_2012",
+      "roles": [
+        "citation",
+        "crosswalk"
+      ],
+      "uses": 8
+    },
+    {
+      "id": "foxen_continuous_gates_2020",
+      "roles": [
+        "citation",
+        "crosswalk"
+      ],
+      "uses": 3
+    },
+    {
+      "id": "gidney_honeycomb_memory_2021",
+      "roles": [
+        "citation",
+        "crosswalk"
+      ],
+      "uses": 4
+    },
+    {
+      "id": "gidney_jones_chromobius_2023",
+      "roles": [
+        "citation"
+      ],
+      "uses": 1
+    },
+    {
+      "id": "gidney_stim_2021",
+      "roles": [
+        "citation"
+      ],
+      "uses": 2
+    },
+    {
+      "id": "google_below_threshold_2025",
+      "roles": [
+        "citation",
+        "crosswalk",
+        "destination"
+      ],
+      "uses": 48
+    },
+    {
+      "id": "google_repetition_2021",
+      "roles": [
+        "citation",
+        "example"
+      ],
+      "uses": 7
+    },
+    {
+      "id": "google_surface_code_scaling_2023",
+      "roles": [
+        "citation"
+      ],
+      "uses": 14
+    },
+    {
+      "id": "gottesman_heisenberg_1998",
+      "roles": [
+        "citation"
+      ],
+      "uses": 2
+    },
+    {
+      "id": "gottesman_intro_qec_2009",
+      "roles": [
+        "citation",
+        "example"
+      ],
+      "uses": 9
+    },
+    {
+      "id": "gottesman_qeccbook_2026",
+      "roles": [
+        "citation",
+        "crosswalk"
+      ],
+      "uses": 16
+    },
+    {
+      "id": "gottesman_thesis_1997",
+      "roles": [
+        "citation",
+        "governing"
+      ],
+      "uses": 5
+    },
+    {
+      "id": "higgott_belief_matching_2023",
+      "roles": [
+        "citation"
+      ],
+      "uses": 1
+    },
+    {
+      "id": "higgott_gidney_sparse_blossom_2025",
+      "roles": [
+        "citation"
+      ],
+      "uses": 3
+    },
+    {
+      "id": "honecker_picco_pujol_2001",
+      "roles": [
+        "citation",
+        "crosswalk"
+      ],
+      "uses": 2
+    },
+    {
+      "id": "katzgraber_andrist_2013",
+      "roles": [
+        "citation"
+      ],
+      "uses": 1
+    },
+    {
+      "id": "kitaev_anyons_1997",
+      "roles": [
+        "citation",
+        "governing"
+      ],
+      "uses": 13
+    },
+    {
+      "id": "kitaev_laumann_2009",
+      "roles": [
+        "citation"
+      ],
+      "uses": 6
+    },
+    {
+      "id": "kitaev_preskill_2006_tee",
+      "roles": [
+        "citation"
+      ],
+      "uses": 2
+    },
+    {
+      "id": "klimov_snake_calibration_2024",
+      "roles": [
+        "citation"
+      ],
+      "uses": 2
+    },
+    {
+      "id": "klimov_tls_fluctuations_2018",
+      "roles": [
+        "citation"
+      ],
+      "uses": 1
+    },
+    {
+      "id": "knill_laflamme_1997",
+      "roles": [
+        "citation",
+        "further",
+        "governing"
+      ],
+      "uses": 3
+    },
+    {
+      "id": "laflamme_miquel_paz_zurek_1996",
+      "roles": [
+        "citation"
+      ],
+      "uses": 1
+    },
+    {
+      "id": "levin_wen_2005_stringnet",
+      "roles": [
+        "citation"
+      ],
+      "uses": 1
+    },
+    {
+      "id": "levin_wen_2006_tee",
+      "roles": [
+        "citation"
+      ],
+      "uses": 2
+    },
+    {
+      "id": "mcewen_cosmic_ray_bursts_2022",
+      "roles": [
+        "citation"
+      ],
+      "uses": 1
+    },
+    {
+      "id": "mcewen_gap_engineering_2024",
+      "roles": [
+        "citation"
+      ],
+      "uses": 1
+    },
+    {
+      "id": "mcewen_leakage_reset_2021",
+      "roles": [
+        "citation"
+      ],
+      "uses": 1
+    },
+    {
+      "id": "merz_chalker_2002",
+      "roles": [
+        "citation",
+        "crosswalk"
+      ],
+      "uses": 2
+    },
+    {
+      "id": "miao_leakage_dqlr_2023",
+      "roles": [
+        "citation"
+      ],
+      "uses": 2
+    },
+    {
+      "id": "mueller_relay_bp_2025",
+      "roles": [
+        "citation"
+      ],
+      "uses": 1
+    },
+    {
+      "id": "preskill_ph219_ch7",
+      "roles": [
+        "citation",
+        "governing"
+      ],
+      "uses": 23
+    },
+    {
+      "id": "raussendorf_harrington_goyal_2006",
+      "roles": [
+        "citation"
+      ],
+      "uses": 2
+    },
+    {
+      "id": "satzinger_google_toric_2021",
+      "roles": [
+        "citation",
+        "example"
+      ],
+      "uses": 8
+    },
+    {
+      "id": "shor_1995_decoherence",
+      "roles": [
+        "citation"
+      ],
+      "uses": 1
+    },
+    {
+      "id": "skoric_parallel_window_2023",
+      "roles": [
+        "citation"
+      ],
+      "uses": 3
+    },
+    {
+      "id": "stace_barrett_doherty_2009",
+      "roles": [
+        "citation",
+        "crosswalk"
+      ],
+      "uses": 3
+    },
+    {
+      "id": "steane_1996_multiple_particle",
+      "roles": [
+        "citation"
+      ],
+      "uses": 2
+    },
+    {
+      "id": "terhal_rmp_2015",
+      "roles": [
+        "citation"
+      ],
+      "uses": 12
+    },
+    {
+      "id": "tomita_svore_2014",
+      "roles": [
+        "citation",
+        "crosswalk"
+      ],
+      "uses": 11
+    },
+    {
+      "id": "vonneumann_1956_probabilistic_logics",
+      "roles": [
+        "citation"
+      ],
+      "uses": 1
+    },
+    {
+      "id": "wang_harrington_preskill_2003",
+      "roles": [
+        "citation"
+      ],
+      "uses": 4
+    },
+    {
+      "id": "yan_tunable_coupler_2018",
+      "roles": [
+        "citation"
+      ],
+      "uses": 1
+    },
+    {
+      "id": "zeng_chen_zhou_wen_2016",
+      "roles": [
+        "citation",
+        "crosswalk",
+        "governing"
+      ],
+      "uses": 14
+    }
+  ]
+}

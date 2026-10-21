@@ -17,8 +17,10 @@ browser from local files: no server, no install, no account.
 
 ## Questions and corrections
 
-Each course has a shared Google Doc for questions and corrections; its course folder's README links to it. Say where
-the issue is (module, section, equation) so it can be traced to the source.
+Each course has one shared document for questions and corrections that everyone edits in the browser; the course
+pages and the course folder's README link to it. Each section and equation has a **Copy ref** control that
+copies its location and the release, for example `[m2 §2.4 eq 2.7] · Release: 2026_QEC-r1`; start each entry with
+it.
 
 ## How this repository is maintained
 
