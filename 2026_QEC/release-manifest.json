@@ -1,33 +1,33 @@
 {
   "schema_version": 1,
   "course": "quantum_error_correction",
-  "label": "2026_QEC-r1",
-  "created": "2026-10-21T19:17:16.957Z",
+  "label": "2026_QEC-r2",
+  "created": "2026-10-22T21:59:05.518Z",
   "engineVersion": "1.0.0",
   "source": {
-    "commit": "1b5003f84ab780c75bc7b67698fd46e075112f39",
+    "commit": "8c27bcca2cf8c831444949adcb29a6cd01db29d4",
     "dirty": false
   },
   "modules": [
     {
       "id": "m1",
-      "revision": "sha256:271b80b0bff88acf"
+      "revision": "sha256:cea9b8ed5aaf01e1"
     },
     {
       "id": "m2",
-      "revision": "sha256:58c8a9197aa8e51d"
+      "revision": "sha256:c3a834d80ab3f2e7"
     },
     {
       "id": "m3",
-      "revision": "sha256:4818da3c35b1ef82"
+      "revision": "sha256:4d60e5c5e12819f7"
     },
     {
       "id": "m4",
-      "revision": "sha256:00cadd1513d13934"
+      "revision": "sha256:df5f31cfd191cad0"
     },
     {
       "id": "m5",
-      "revision": "sha256:6893bb6fed5a5f89"
+      "revision": "sha256:9f79a48cf817a4ca"
     }
   ],
   "questionsUrl": "https://docs.google.com/document/d/1dp_MXEA5aFQJ1om-RrPk7rns6-5DhuFm/edit",
