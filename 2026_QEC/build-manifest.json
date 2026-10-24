@@ -1,7 +1,7 @@
 {
   "engineVersion": "1.0.0",
   "course": "quantum_error_correction",
-  "revision": "sha256:67d35057056b65e9",
+  "revision": "sha256:6524e63c8c97be72",
   "pages": [
     "index.html",
     "m1.html",
@@ -18,15 +18,15 @@
   "modules": [
     {
       "id": "m1",
-      "revision": "sha256:cea9b8ed5aaf01e1"
+      "revision": "sha256:35961f3c2e3a2bd9"
     },
     {
       "id": "m2",
-      "revision": "sha256:c3a834d80ab3f2e7"
+      "revision": "sha256:95c50ba44396a871"
     },
     {
       "id": "m3",
-      "revision": "sha256:4d60e5c5e12819f7"
+      "revision": "sha256:77334c6296bce052"
     },
     {
       "id": "m4",

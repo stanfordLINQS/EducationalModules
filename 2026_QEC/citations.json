@@ -36,7 +36,7 @@
       "roles": [
         "citation"
       ],
-      "uses": 8
+      "uses": 6
     },
     {
       "id": "bombin_martin_delgado_2007_optimal",
@@ -44,7 +44,7 @@
         "citation",
         "crosswalk"
       ],
-      "uses": 2
+      "uses": 3
     },
     {
       "id": "bravyi_kitaev_boundary_1998",
@@ -52,7 +52,7 @@
         "citation",
         "crosswalk"
       ],
-      "uses": 2
+      "uses": 13
     },
     {
       "id": "bravyi_suchara_vargo_2014",
@@ -74,7 +74,7 @@
       "roles": [
         "citation"
       ],
-      "uses": 5
+      "uses": 4
     },
     {
       "id": "browne_problem_sheet_3",
@@ -90,7 +90,7 @@
         "crosswalk",
         "governing"
       ],
-      "uses": 23
+      "uses": 32
     },
     {
       "id": "calderbank_rains_shor_sloane_1998",
@@ -108,13 +108,6 @@
         "crosswalk"
       ],
       "uses": 6
-    },
-    {
-      "id": "chen_gu_wen_2010_local_unitary",
-      "roles": [
-        "citation"
-      ],
-      "uses": 1
     },
     {
       "id": "delfosse_nickerson_union_find_2021",
@@ -138,7 +131,7 @@
         "crosswalk",
         "further"
       ],
-      "uses": 19
+      "uses": 28
     },
     {
       "id": "devitt_qec_beginners_2013",
@@ -153,7 +146,7 @@
         "citation",
         "crosswalk"
       ],
-      "uses": 8
+      "uses": 12
     },
     {
       "id": "foxen_continuous_gates_2020",
@@ -192,7 +185,7 @@
         "crosswalk",
         "destination"
       ],
-      "uses": 48
+      "uses": 49
     },
     {
       "id": "google_repetition_2021",
@@ -207,7 +200,7 @@
       "roles": [
         "citation"
       ],
-      "uses": 14
+      "uses": 17
     },
     {
       "id": "gottesman_heisenberg_1998",
@@ -274,7 +267,7 @@
       "roles": [
         "citation"
       ],
-      "uses": 1
+      "uses": 4
     },
     {
       "id": "kitaev_anyons_1997",
@@ -282,21 +275,21 @@
         "citation",
         "governing"
       ],
-      "uses": 23
+      "uses": 41
     },
     {
       "id": "kitaev_laumann_2009",
       "roles": [
         "citation"
       ],
-      "uses": 10
+      "uses": 18
     },
     {
       "id": "kitaev_preskill_2006_tee",
       "roles": [
         "citation"
       ],
-      "uses": 2
+      "uses": 5
     },
     {
       "id": "klimov_snake_calibration_2024",
@@ -334,13 +327,6 @@
         "citation"
       ],
       "uses": 1
-    },
-    {
-      "id": "levin_wen_2006_tee",
-      "roles": [
-        "citation"
-      ],
-      "uses": 2
     },
     {
       "id": "mcewen_cosmic_ray_bursts_2022",
@@ -391,7 +377,7 @@
         "citation",
         "governing"
       ],
-      "uses": 27
+      "uses": 25
     },
     {
       "id": "raussendorf_harrington_goyal_2006",
@@ -406,7 +392,7 @@
         "citation",
         "example"
       ],
-      "uses": 8
+      "uses": 12
     },
     {
       "id": "shor_1995_decoherence",
@@ -442,7 +428,7 @@
       "roles": [
         "citation"
       ],
-      "uses": 12
+      "uses": 8
     },
     {
       "id": "tomita_svore_2014",
@@ -450,7 +436,7 @@
         "citation",
         "crosswalk"
       ],
-      "uses": 11
+      "uses": 16
     },
     {
       "id": "vonneumann_1956_probabilistic_logics",
@@ -464,7 +450,7 @@
       "roles": [
         "citation"
       ],
-      "uses": 4
+      "uses": 5
     },
     {
       "id": "yan_tunable_coupler_2018",
@@ -480,7 +466,7 @@
         "crosswalk",
         "governing"
       ],
-      "uses": 12
+      "uses": 14
     }
   ]
 }

@@ -3,9 +3,11 @@
 Interactive graduate course modules for the Stanford LINQS group. Each folder is one course. Everything runs in the
 browser from local files: no server, no install, no account.
 
-| Folder | Course | Status |
-|---|---|---|
-| [`2026_QEC`](2026_QEC/) | Quantum error correction | Being prepared; no modules released yet |
+| Folder | Course |
+|---|---|
+| [`2026_QEC`](2026_QEC/) | Quantum error correction: from parity checks to fault-tolerant machines |
+
+Each course folder's README lists the modules in its current release.
 
 ## Using a course
 

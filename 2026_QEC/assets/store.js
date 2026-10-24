@@ -285,7 +285,7 @@
       key,get,set,exportState,restoreState,commentStatus,applyFeedback,update:(p,fn)=>set(p,fn(get(p))),subscribe:fn=>{
         listeners.add(fn);
         return()=>listeners.delete(fn);
-      },recordAttempt,saveDraft,saveNotes,saveLabNotes,resetPrediction,saveAnswer,dueItems:t=>Scheduler.dueItems(state,t),addComment,updateComment,withdrawComment,comments:()=>Object.values(clone(state.comments)).sort((a,b)=>a.created.localeCompare(b.created)),registerRemote,importComments,merge:other=>{
+      },recordAttempt,saveDraft,saveNotes,saveLabNotes,resetPrediction,saveAnswer,dueItems:t=>Scheduler.dueItems(state,t),addComment,updateComment,withdrawComment,comments:()=>Object.values(clone(state.comments)).sort((a,b)=>String(a.created||'').localeCompare(String(b.created||''))),registerRemote,importComments,merge:other=>{
         state=Merge.merge(state,other);
         reconcile();persist();
         return clone(state);

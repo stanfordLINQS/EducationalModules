@@ -26,6 +26,9 @@
     return [...map.values()].sort((a,b)=>key(a).localeCompare(key(b)));
   }
   const entries=x=>Array.isArray(x)?x:Object.values(x||{});
+  // A comment record needs a string id and a string created; anything else (a request record that reached a
+  // browser's comments on 2026-10-18, a null, an array) is dropped so it can neither break sorting nor be synced.
+  const comment=x=>!!x&&typeof x==='object'&&!Array.isArray(x)&&typeof x.id==='string'&&typeof x.created==='string';
   const labControls=lab=>{if(!lab)return lab;const {notes,...controls}=lab;return controls;};
   function merge(a={},b={}) {
     if(a.course&&b.course&&a.course!==b.course)throw new Error('Cannot merge different courses');
@@ -58,7 +61,7 @@
         if(field==='labs'&&(x?.notes||y?.notes))out[field][id]={...out[field][id],notes:newer(x?.notes,y?.notes)};
       }
     }
-    for(const c of union(entries(a.comments),entries(b.comments),x=>x.id))out.comments[c.id]=c;
+    for(const c of union(entries(a.comments).filter(comment),entries(b.comments).filter(comment),x=>x.id))out.comments[c.id]=c;
     // A complete server snapshot carries deletions; unioning it would revive removed answers.
     if(a.feedbackSnapshot||b.feedbackSnapshot){
       const chosen=!a.feedbackSnapshot?b:!b.feedbackSnapshot?a:newer(a,b,x=>x.feedbackSnapshot.t);
@@ -72,7 +75,7 @@
     // Another tab may already have received a later complete snapshot.
     if(state.feedbackSnapshot&&feedback.receivedAt&&feedback.receivedAt<state.feedbackSnapshot.t)return out;
     out.comments||={};
-    for(const [id,c] of Object.entries(comments))if(c?.course===out.course&&c.id===id&&!['__proto__','constructor','prototype'].includes(id)){
+    for(const [id,c] of Object.entries(comments))if(comment(c)&&c.course===out.course&&c.id===id&&!['__proto__','constructor','prototype'].includes(id)){
       const final=lifecycle[id]&&!['pending','withdrawn'].includes(lifecycle[id].status);
       if(final||!out.comments[id]||c.updated>=out.comments[id].updated)out.comments[id]=clone(c);
     }
