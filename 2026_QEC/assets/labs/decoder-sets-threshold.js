@@ -6,7 +6,7 @@
   else (root.StudyLabModels = root.StudyLabModels || {})['decoder-sets-threshold'] = api;
 })(typeof self !== 'undefined' ? self : this, function () {
   'use strict';
-  // Module 5 architect handoff, 2026-10-17, labs.json fixed.browne.
+  // Module 8 architect handoff, 2026-10-17, labs.json fixed.browne.
   // Gray-code enumeration of 2^24 independent plaquette products; verified
   // separately by a 32-state face-spin transfer matrix (also in our tests).
   // Class order: R, R xor vertical, R xor horizontal, R xor both.

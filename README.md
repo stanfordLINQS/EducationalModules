@@ -21,7 +21,7 @@ Each course folder's README lists the modules in its current release.
 
 Each course has one shared document for questions and corrections that everyone edits in the browser; the course
 pages and the course folder's README link to it. Each section and equation has a **Copy ref** control that
-copies its location and the release, for example `[§2.4 eq 2.7] · Release: 2026_QEC-r4`; start each entry with
+copies its location and the release, for example `[§2.4 eq 2.7] · Release: 2026_QEC-r5`; start each entry with
 it.
 
 ## How this repository is maintained

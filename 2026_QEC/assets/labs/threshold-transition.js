@@ -7,7 +7,7 @@
 })(typeof self !== 'undefined' ? self : this, function () {
   'use strict';
   const DEFAULTS = Object.freeze({mode:'shapes',shape:'seam-tree',L:24,p_e:0.5,samples:512,seed:17,w:4,p:0.01});
-  // Module 5 architecture: labs.json, N-saw, compute_examples.py (2026-10-17).
+  // Module 8 architecture: labs.json, N-saw, compute_examples.py (2026-10-17).
   const SAW_COUNTS = Object.freeze([1,4,12,36,100,284,780,2172,5916,16268,44100]);
   const GRID = Object.freeze([0,0.25,0.4,0.45,0.475,0.5,0.525,0.55,0.6,0.75,1]);
   const SHAPES = Object.freeze(Object.fromEntries(Object.entries({
