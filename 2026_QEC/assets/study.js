@@ -248,7 +248,7 @@
         if(item.choices?.length){
           const selected=(Array.isArray(value)?value:[value]).map(Number);
           const choices=item.choices.filter((c,i)=>full||selected.includes(i));
-          feedback.innerHTML+=`<ul>${choices.map(c=>`<li${full&&c.correct?' class="correct"':''}><strong>${c.html||esc(c.text)}</strong>${full&&c.correct?' (correct)':''}${c.whyHTML||c.why?' — '+(c.whyHTML||esc(c.why)):''}</li>`).join('')}</ul>`;
+          feedback.innerHTML+=`<ul>${choices.map(c=>`<li${full&&c.correct?' class="correct"':''}><strong>${c.html||esc(c.text)}</strong>${full&&c.correct?' (correct)':''}${c.whyHTML||c.why?': '+(c.whyHTML||esc(c.why)):''}</li>`).join('')}</ul>`;
         }else if(full&&item.answer!==undefined)feedback.innerHTML+=`<p>Expected: ${esc(item.answer)} ${esc(item.units||'')}${item.tol?` (absolute tolerance ±${esc(item.tol)})`:''}${item.reltol?` (relative tolerance ${esc(item.reltol)})`:''}.</p>`;
         keyButton.hidden=full;
         if(explanation){explanation.hidden=!full;explanation.open=full;}
@@ -433,7 +433,7 @@
     a.click();
     setTimeout(()=>URL.revokeObjectURL(url),1000);
   }
-  function lifecycleText(c){const life=store.commentStatus(c.id);return life.status+(life.request?' in '+life.request:'')+(life.reason?' — '+life.reason:'');}
+  function lifecycleText(c){const life=store.commentStatus(c.id);return life.status+(life.request?' in '+life.request:'')+(life.reason?': '+life.reason:'');}
   function answerHTML(id){const a=store.get(['answers',id]);return a?`<div class="question-answer" data-question-id="${esc(id)}"><p class="eyebrow">Your question · Answer</p><p class="request-meta">${esc(a.by)} · ${esc(a.answered)}</p>${a.html||preview(a.body)}</div>`:'';}
   function inlineAnswers(){
     for(const old of all('.inline-question-answer'))old.remove();

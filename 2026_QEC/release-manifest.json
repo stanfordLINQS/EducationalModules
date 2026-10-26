@@ -1,25 +1,25 @@
 {
   "schema_version": 1,
   "course": "quantum_error_correction",
-  "label": "2026_QEC-r5",
-  "created": "2026-10-25T19:28:22.131Z",
+  "label": "2026_QEC-r6",
+  "created": "2026-10-26T01:29:21.940Z",
   "engineVersion": "1.0.0",
   "source": {
-    "commit": "9e8b8130391078c8a2de8dda1ea8c77572cbcb2a",
+    "commit": "ae6939cbb850b23379d04d2783805cbb07b99339",
     "dirty": false
   },
   "modules": [
     {
       "id": "m1",
-      "revision": "sha256:72864ea84be50165"
+      "revision": "sha256:7e673288d8cf8d08"
     },
     {
       "id": "m2",
-      "revision": "sha256:ea2579f0f28f5b06"
+      "revision": "sha256:30960f6dbb6e6b16"
     },
     {
       "id": "m3",
-      "revision": "sha256:f016dd733b99c103"
+      "revision": "sha256:4d7a0464d603c84d"
     },
     {
       "id": "m14",

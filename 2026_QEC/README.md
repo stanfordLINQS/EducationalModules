@@ -2,7 +2,7 @@
 
 From parity checks to fault-tolerant machines
 
-Release **2026_QEC-r5** · 2026-10-25
+Release **2026_QEC-r6** · 2026-10-26
 
 Released modules:
 
@@ -17,4 +17,4 @@ Released modules:
 
 Open `index.html` in Chrome. The course works offline; no server is needed. Progress is saved in this browser on this laptop and survives `git pull` when you keep using the same checkout and browser profile. Use **Back up progress** on the Notebook page to download a JSON backup; **Restore from backup** merges it with your existing work.
 
-Post questions and corrections in the [shared questions-and-corrections document](https://docs.google.com/document/d/1dp_MXEA5aFQJ1om-RrPk7rns6-5DhuFm/edit). Edit it in the browser so everyone's changes go into the same file. Include a location and release: `[§<section number>] · Release: <label>`, or `[§<section number> eq <n>] · Release: <label>` for an equation. For example, `[§1.1] · Release: 2026_QEC-r5`. The **Copy ref** controls beside headings and numbered equations copy this citation. Section 0 denotes the module introduction before its first numbered section.
+Post questions and corrections in the [shared questions-and-corrections document](https://docs.google.com/document/d/1dp_MXEA5aFQJ1om-RrPk7rns6-5DhuFm/edit). Edit it in the browser so everyone's changes go into the same file. Include a location and release: `[§<section number>] · Release: <label>`, or `[§<section number> eq <n>] · Release: <label>` for an equation. For example, `[§1.1] · Release: 2026_QEC-r6`. The **Copy ref** controls beside headings and numbered equations copy this citation. Section 0 denotes the module introduction before its first numbered section.
