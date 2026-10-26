@@ -16,7 +16,8 @@
     "notebook.html",
     "references.html",
     "conventions.html",
-    "symbols.html"
+    "symbols.html",
+    "releases.html"
   ],
   "modules": [
     {
@@ -199,6 +200,7 @@
     "m7.html",
     "notebook.html",
     "references.html",
+    "releases.html",
     "review.html",
     "symbols.html"
   ]

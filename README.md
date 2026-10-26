@@ -7,7 +7,8 @@ browser from local files: no server, no install, no account.
 |---|---|
 | [`2026_QEC`](2026_QEC/) | Quantum error correction: from parity checks to fault-tolerant machines |
 
-Each course folder's README lists the modules in its current release.
+Each course folder's README lists the modules in its current release. Its **Releases** page (`releases.html`, linked
+from every page's footer) shows which release you have and what changed in each release.
 
 ## Using a course
 
