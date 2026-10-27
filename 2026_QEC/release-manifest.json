@@ -1,11 +1,11 @@
 {
   "schema_version": 1,
   "course": "quantum_error_correction",
-  "label": "2026_QEC-r7",
-  "created": "2026-10-26T01:51:19.735Z",
+  "label": "2026_QEC-r8",
+  "created": "2026-10-27T12:42:01.447Z",
   "engineVersion": "1.0.0",
   "source": {
-    "commit": "74a17ef41b96bd28528321db7956bf5e2947513b",
+    "commit": "9d981463f985b43f7ac36f33d984745a8ef896cf",
     "dirty": false
   },
   "history": [
@@ -349,6 +349,65 @@
         }
       ],
       "notes": "Adds this Releases page, which lists every release and what changed in it."
+    },
+    {
+      "label": "2026_QEC-r8",
+      "created": "2026-10-27T12:42:01.447Z",
+      "source": {
+        "commit": "9d981463f985b43f7ac36f33d984745a8ef896cf",
+        "dirty": false
+      },
+      "modules": [
+        {
+          "id": "m1",
+          "number": 1,
+          "title": "Why more faulty qubits can mean fewer errors",
+          "revision": "sha256:7e673288d8cf8d08"
+        },
+        {
+          "id": "m2",
+          "number": 2,
+          "title": "Stabilizer codes and the CSS construction",
+          "revision": "sha256:30960f6dbb6e6b16"
+        },
+        {
+          "id": "m3",
+          "number": 3,
+          "title": "The toric code: strings, logicals and matter",
+          "revision": "sha256:4d7a0464d603c84d"
+        },
+        {
+          "id": "m14",
+          "number": 4,
+          "title": "Planar surface codes: boundaries and patches",
+          "revision": "sha256:ac0e56a94feb604b"
+        },
+        {
+          "id": "m6",
+          "number": 5,
+          "title": "qLDPC codes: sparse checks, long connections",
+          "revision": "sha256:43dd07db4e59710b"
+        },
+        {
+          "id": "m7",
+          "number": 6,
+          "title": "Codes as matter",
+          "revision": "sha256:f41af7385d4467b3"
+        },
+        {
+          "id": "m4",
+          "number": 7,
+          "title": "Measuring a surface code: circuits, detectors and Google's memory experiments",
+          "revision": "sha256:4b7b0ac3ba70bdaf"
+        },
+        {
+          "id": "m5",
+          "number": 8,
+          "title": "Decoding and thresholds",
+          "revision": "sha256:bc4fcdbaa2baec6b"
+        }
+      ],
+      "notes": "Module 5, section 5.1: the passage on what planar locality costs is rewritten around the nine-qubit patch, with three new step-by-step figures."
     }
   ],
   "modules": [
@@ -370,7 +429,7 @@
     },
     {
       "id": "m6",
-      "revision": "sha256:5ce71dc73779152a"
+      "revision": "sha256:43dd07db4e59710b"
     },
     {
       "id": "m7",
