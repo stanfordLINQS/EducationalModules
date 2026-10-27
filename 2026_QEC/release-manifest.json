@@ -1,11 +1,11 @@
 {
   "schema_version": 1,
   "course": "quantum_error_correction",
-  "label": "2026_QEC-r8",
-  "created": "2026-10-27T12:42:01.447Z",
+  "label": "2026_QEC-r9",
+  "created": "2026-10-27T23:33:23.237Z",
   "engineVersion": "1.0.0",
   "source": {
-    "commit": "9d981463f985b43f7ac36f33d984745a8ef896cf",
+    "commit": "6dc35929a23be7b53f5c262178f660aad0428d4c",
     "dirty": false
   },
   "history": [
@@ -408,6 +408,65 @@
         }
       ],
       "notes": "Module 5, section 5.1: the passage on what planar locality costs is rewritten around the nine-qubit patch, with three new step-by-step figures."
+    },
+    {
+      "label": "2026_QEC-r9",
+      "created": "2026-10-27T23:33:23.237Z",
+      "source": {
+        "commit": "6dc35929a23be7b53f5c262178f660aad0428d4c",
+        "dirty": false
+      },
+      "modules": [
+        {
+          "id": "m1",
+          "number": 1,
+          "title": "Why more faulty qubits can mean fewer errors",
+          "revision": "sha256:7e673288d8cf8d08"
+        },
+        {
+          "id": "m2",
+          "number": 2,
+          "title": "Stabilizer codes and the CSS construction",
+          "revision": "sha256:30960f6dbb6e6b16"
+        },
+        {
+          "id": "m3",
+          "number": 3,
+          "title": "The toric code: strings, logicals and matter",
+          "revision": "sha256:4d7a0464d603c84d"
+        },
+        {
+          "id": "m14",
+          "number": 4,
+          "title": "Planar surface codes: boundaries and patches",
+          "revision": "sha256:ac0e56a94feb604b"
+        },
+        {
+          "id": "m6",
+          "number": 5,
+          "title": "qLDPC codes: sparse checks, long connections",
+          "revision": "sha256:a5e4fcfe923ad376"
+        },
+        {
+          "id": "m7",
+          "number": 6,
+          "title": "Codes as matter",
+          "revision": "sha256:f41af7385d4467b3"
+        },
+        {
+          "id": "m4",
+          "number": 7,
+          "title": "Measuring a surface code: circuits, detectors and Google's memory experiments",
+          "revision": "sha256:4b7b0ac3ba70bdaf"
+        },
+        {
+          "id": "m5",
+          "number": 8,
+          "title": "Decoding and thresholds",
+          "revision": "sha256:bc4fcdbaa2baec6b"
+        }
+      ],
+      "notes": "Module 5: section 5.1 opens with a new overview, and section 5.2 is rewritten with a worked Hamming-code example, an optional note and two revised figures."
     }
   ],
   "modules": [
@@ -429,7 +488,7 @@
     },
     {
       "id": "m6",
-      "revision": "sha256:43dd07db4e59710b"
+      "revision": "sha256:a5e4fcfe923ad376"
     },
     {
       "id": "m7",
