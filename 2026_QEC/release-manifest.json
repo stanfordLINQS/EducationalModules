@@ -1,11 +1,11 @@
 {
   "schema_version": 1,
   "course": "quantum_error_correction",
-  "label": "2026_QEC-r9",
-  "created": "2026-10-27T23:33:23.237Z",
+  "label": "2026_QEC-r10",
+  "created": "2026-10-28T14:03:29.617Z",
   "engineVersion": "1.0.0",
   "source": {
-    "commit": "6dc35929a23be7b53f5c262178f660aad0428d4c",
+    "commit": "b675077c6398f11befa3eb8c91051a6c8095eff8",
     "dirty": false
   },
   "history": [
@@ -467,6 +467,65 @@
         }
       ],
       "notes": "Module 5: section 5.1 opens with a new overview, and section 5.2 is rewritten with a worked Hamming-code example, an optional note and two revised figures."
+    },
+    {
+      "label": "2026_QEC-r10",
+      "created": "2026-10-28T14:03:29.617Z",
+      "source": {
+        "commit": "b675077c6398f11befa3eb8c91051a6c8095eff8",
+        "dirty": false
+      },
+      "modules": [
+        {
+          "id": "m1",
+          "number": 1,
+          "title": "Why more faulty qubits can mean fewer errors",
+          "revision": "sha256:7e673288d8cf8d08"
+        },
+        {
+          "id": "m2",
+          "number": 2,
+          "title": "Stabilizer codes and the CSS construction",
+          "revision": "sha256:30960f6dbb6e6b16"
+        },
+        {
+          "id": "m3",
+          "number": 3,
+          "title": "The toric code: strings, logicals and matter",
+          "revision": "sha256:4d7a0464d603c84d"
+        },
+        {
+          "id": "m14",
+          "number": 4,
+          "title": "Planar surface codes: boundaries and patches",
+          "revision": "sha256:ac0e56a94feb604b"
+        },
+        {
+          "id": "m6",
+          "number": 5,
+          "title": "qLDPC codes: sparse checks, long connections",
+          "revision": "sha256:42d29160abfb6a25"
+        },
+        {
+          "id": "m7",
+          "number": 6,
+          "title": "Codes as matter",
+          "revision": "sha256:f41af7385d4467b3"
+        },
+        {
+          "id": "m4",
+          "number": 7,
+          "title": "Measuring a surface code: circuits, detectors and Google's memory experiments",
+          "revision": "sha256:4b7b0ac3ba70bdaf"
+        },
+        {
+          "id": "m5",
+          "number": 8,
+          "title": "Decoding and thresholds",
+          "revision": "sha256:bc4fcdbaa2baec6b"
+        }
+      ],
+      "notes": "Module 5: the hypergraph-product passage is clarified, with new steps that repair the failed overlap, read the matrices, finish the eight-qubit code and build the toric code from two repetition rings, and with new and redrawn figures. In section 5.2 the 120-bit example is now one connected code."
     }
   ],
   "modules": [
@@ -488,7 +547,7 @@
     },
     {
       "id": "m6",
-      "revision": "sha256:a5e4fcfe923ad376"
+      "revision": "sha256:42d29160abfb6a25"
     },
     {
       "id": "m7",
