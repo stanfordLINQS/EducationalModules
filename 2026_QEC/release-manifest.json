@@ -1,11 +1,11 @@
 {
   "schema_version": 1,
   "course": "quantum_error_correction",
-  "label": "2026_QEC-r10",
-  "created": "2026-10-28T14:03:29.617Z",
+  "label": "2026_QEC-r11",
+  "created": "2026-10-30T15:46:14.185Z",
   "engineVersion": "1.0.0",
   "source": {
-    "commit": "b675077c6398f11befa3eb8c91051a6c8095eff8",
+    "commit": "2c762cdec088ba416b379c3956ea070297cc470f",
     "dirty": false
   },
   "history": [
@@ -526,6 +526,65 @@
         }
       ],
       "notes": "Module 5: the hypergraph-product passage is clarified, with new steps that repair the failed overlap, read the matrices, finish the eight-qubit code and build the toric code from two repetition rings, and with new and redrawn figures. In section 5.2 the 120-bit example is now one connected code."
+    },
+    {
+      "label": "2026_QEC-r11",
+      "created": "2026-10-30T15:46:14.185Z",
+      "source": {
+        "commit": "2c762cdec088ba416b379c3956ea070297cc470f",
+        "dirty": false
+      },
+      "modules": [
+        {
+          "id": "m1",
+          "number": 1,
+          "title": "Why more faulty qubits can mean fewer errors",
+          "revision": "sha256:7e673288d8cf8d08"
+        },
+        {
+          "id": "m2",
+          "number": 2,
+          "title": "Stabilizer codes and the CSS construction",
+          "revision": "sha256:30960f6dbb6e6b16"
+        },
+        {
+          "id": "m3",
+          "number": 3,
+          "title": "The toric code: strings, logicals and matter",
+          "revision": "sha256:4d7a0464d603c84d"
+        },
+        {
+          "id": "m14",
+          "number": 4,
+          "title": "Planar surface codes: boundaries and patches",
+          "revision": "sha256:ac0e56a94feb604b"
+        },
+        {
+          "id": "m6",
+          "number": 5,
+          "title": "qLDPC codes: sparse checks, long connections",
+          "revision": "sha256:61bf9a9595fc518a"
+        },
+        {
+          "id": "m7",
+          "number": 6,
+          "title": "Codes as matter",
+          "revision": "sha256:f41af7385d4467b3"
+        },
+        {
+          "id": "m4",
+          "number": 7,
+          "title": "Measuring a surface code: circuits, detectors and Google's memory experiments",
+          "revision": "sha256:4b7b0ac3ba70bdaf"
+        },
+        {
+          "id": "m5",
+          "number": 8,
+          "title": "Decoding and thresholds",
+          "revision": "sha256:bc4fcdbaa2baec6b"
+        }
+      ],
+      "notes": "Module 5, section 5.3: the hypergraph product is now introduced in five steps on a grid built from the two codes, with a clearer argument that an X check and a Z check always share an even number of qubits, two redesigned figures and two new ones."
     }
   ],
   "modules": [
@@ -547,7 +606,7 @@
     },
     {
       "id": "m6",
-      "revision": "sha256:42d29160abfb6a25"
+      "revision": "sha256:61bf9a9595fc518a"
     },
     {
       "id": "m7",

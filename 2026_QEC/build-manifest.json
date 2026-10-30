@@ -1,7 +1,7 @@
 {
   "engineVersion": "1.0.0",
   "course": "quantum_error_correction",
-  "revision": "sha256:60c78941362bf0ef",
+  "revision": "sha256:0e083788cff73ea9",
   "pages": [
     "index.html",
     "m1.html",
@@ -38,7 +38,7 @@
     },
     {
       "id": "m6",
-      "revision": "sha256:42d29160abfb6a25"
+      "revision": "sha256:61bf9a9595fc518a"
     },
     {
       "id": "m7",
