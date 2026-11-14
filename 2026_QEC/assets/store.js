@@ -160,6 +160,16 @@
     }
     function saveDraft(itemId,text){return saveText(itemId,text,'draft');}
     function saveNotes(itemId,text){return saveText(itemId,text,'notes');}
+    function archiveNotes(itemId){
+      const item=state.items[itemId],note=item?.notes;
+      if(!note?.text.trim())return null;
+      item.notesArchive||=[];
+      if(!item.notesArchive.some(entry=>entry.t===note.t))item.notesArchive.push(clone(note));
+      item.notesArchive.sort((a,b)=>a.t.localeCompare(b.t));
+      delete item.notes;
+      item.updated=timestamp([item.updated||'',note.t].sort().at(-1));
+      save();return clone(note);
+    }
     function saveLabNotes(labId,text){
       valid(['labs',labId]);
       const lab=state.labs?.[labId]||{};
@@ -262,6 +272,7 @@
         if(!object(item))invalid();
         for(const key of ['attempts','feedback'])if(item[key]!==undefined&&(!Array.isArray(item[key])||item[key].some(v=>!object(v)||!date(v.t))))invalid();
         for(const key of ['draft','notes'])if(item[key]!==undefined&&(!object(item[key])||typeof item[key].text!=='string'||!date(item[key].t)))invalid();
+        if(item.notesArchive!==undefined&&(!Array.isArray(item.notesArchive)||item.notesArchive.some(note=>!object(note)||typeof note.text!=='string'||!date(note.t)||!/^\d{4}-\d\d-\d\dT/.test(note.t))))invalid();
         if(item.reset!==undefined&&(!object(item.reset)||!date(item.reset.t)))invalid();
       }
       for(const lab of Object.values(incoming.labs||{}))if(!object(lab)||lab.notes&&(!object(lab.notes)||typeof lab.notes.text!=='string'||!date(lab.notes.t)))invalid();
@@ -285,7 +296,7 @@
       key,get,set,exportState,restoreState,commentStatus,applyFeedback,update:(p,fn)=>set(p,fn(get(p))),subscribe:fn=>{
         listeners.add(fn);
         return()=>listeners.delete(fn);
-      },recordAttempt,saveDraft,saveNotes,saveLabNotes,resetPrediction,saveAnswer,dueItems:t=>Scheduler.dueItems(state,t),addComment,updateComment,withdrawComment,comments:()=>Object.values(clone(state.comments)).sort((a,b)=>String(a.created||'').localeCompare(String(b.created||''))),registerRemote,importComments,merge:other=>{
+      },recordAttempt,saveDraft,saveNotes,archiveNotes,saveLabNotes,resetPrediction,saveAnswer,dueItems:t=>Scheduler.dueItems(state,t),addComment,updateComment,withdrawComment,comments:()=>Object.values(clone(state.comments)).sort((a,b)=>String(a.created||'').localeCompare(String(b.created||''))),registerRemote,importComments,merge:other=>{
         state=Merge.merge(state,other);
         reconcile();persist();
         return clone(state);
@@ -295,8 +306,9 @@
         if(!remote?.capabilities?.grader||typeof remote.grade!=='function')return {path:'queued',request:api.requestFeedback(itemId)};
         try{
           // Grading must follow the saves already queued by the exercise's Save step.
+          const payload={itemId,...record};delete payload.notes;delete payload.notesArchive;
           let reply,failure;
-          await enqueue(async()=>{try{reply=await remote.grade({itemId,...record});}catch(error){failure=error;throw error;}});
+          await enqueue(async()=>{try{reply=await remote.grade(payload);}catch(error){failure=error;throw error;}});
           if(failure)throw failure;
           const entry={text:reply.feedback,from:reply.from||'grader',t:reply.t};
           const feedback=get(['items',itemId,'feedback'])||[];
@@ -306,7 +318,7 @@
       },requestFeedback:itemId=>{
         const item=get(['items',itemId]);
         // Scratch work stays in learner state, outside both grading and queued feedback.
-        if(item)delete item.notes;
+        if(item){delete item.notes;delete item.notesArchive;}
         const t=timestamp(),request={
           id:'f-'+t.replace(/[-:.]/g,'')+'-'+random(),course,itemId,t,item
         };

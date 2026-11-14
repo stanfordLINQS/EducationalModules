@@ -1,11 +1,11 @@
 {
   "schema_version": 1,
   "course": "quantum_error_correction",
-  "label": "2026_QEC-r11",
-  "created": "2026-10-30T15:46:14.185Z",
+  "label": "2026_QEC-r12",
+  "created": "2026-11-14T04:43:15.639Z",
   "engineVersion": "1.0.0",
   "source": {
-    "commit": "2c762cdec088ba416b379c3956ea070297cc470f",
+    "commit": "489d656c1554a24da4e4a07bae96e9df7e2abbc5",
     "dirty": false
   },
   "history": [
@@ -585,28 +585,87 @@
         }
       ],
       "notes": "Module 5, section 5.3: the hypergraph product is now introduced in five steps on a grid built from the two codes, with a clearer argument that an X check and a Z check always share an even number of qubits, two redesigned figures and two new ones."
+    },
+    {
+      "label": "2026_QEC-r12",
+      "created": "2026-11-14T04:43:15.639Z",
+      "source": {
+        "commit": "489d656c1554a24da4e4a07bae96e9df7e2abbc5",
+        "dirty": false
+      },
+      "modules": [
+        {
+          "id": "m1",
+          "number": 1,
+          "title": "Why more faulty qubits can mean fewer errors",
+          "revision": "sha256:258d3da0b37e42c2"
+        },
+        {
+          "id": "m2",
+          "number": 2,
+          "title": "Stabilizer codes and the CSS construction",
+          "revision": "sha256:a5e6d29e860117a7"
+        },
+        {
+          "id": "m3",
+          "number": 3,
+          "title": "The toric code: strings, logicals and matter",
+          "revision": "sha256:dedcfbf6adb3c260"
+        },
+        {
+          "id": "m14",
+          "number": 4,
+          "title": "Planar surface codes: boundaries and patches",
+          "revision": "sha256:58c52bb2563562e1"
+        },
+        {
+          "id": "m6",
+          "number": 5,
+          "title": "qLDPC codes: sparse checks, long connections",
+          "revision": "sha256:c1c340e544968ba9"
+        },
+        {
+          "id": "m7",
+          "number": 6,
+          "title": "Codes as matter",
+          "revision": "sha256:f41af7385d4467b3"
+        },
+        {
+          "id": "m4",
+          "number": 7,
+          "title": "Measuring a surface code: circuits, detectors and Google's memory experiments",
+          "revision": "sha256:4b7b0ac3ba70bdaf"
+        },
+        {
+          "id": "m5",
+          "number": 8,
+          "title": "Decoding and thresholds",
+          "revision": "sha256:bc4fcdbaa2baec6b"
+        }
+      ],
+      "notes": "Modules 1 to 5 revised for clarity and shortened, and the Module 5 section 5.3 subsection renamed Why the check-check cells hold qubits. Figure labels keep their natural letter shapes, challenge problems carry a Challenge label, and the review page starts each item with a blank reasoning note and shows your earlier note after you answer."
     }
   ],
   "modules": [
     {
       "id": "m1",
-      "revision": "sha256:7e673288d8cf8d08"
+      "revision": "sha256:258d3da0b37e42c2"
     },
     {
       "id": "m2",
-      "revision": "sha256:30960f6dbb6e6b16"
+      "revision": "sha256:a5e6d29e860117a7"
     },
     {
       "id": "m3",
-      "revision": "sha256:4d7a0464d603c84d"
+      "revision": "sha256:dedcfbf6adb3c260"
     },
     {
       "id": "m14",
-      "revision": "sha256:ac0e56a94feb604b"
+      "revision": "sha256:58c52bb2563562e1"
     },
     {
       "id": "m6",
-      "revision": "sha256:61bf9a9595fc518a"
+      "revision": "sha256:c1c340e544968ba9"
     },
     {
       "id": "m7",

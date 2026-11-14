@@ -1,7 +1,7 @@
 {
   "engineVersion": "1.0.0",
   "course": "quantum_error_correction",
-  "revision": "sha256:0e083788cff73ea9",
+  "revision": "sha256:ac8e715741c7dec0",
   "pages": [
     "index.html",
     "m1.html",
@@ -22,23 +22,23 @@
   "modules": [
     {
       "id": "m1",
-      "revision": "sha256:7e673288d8cf8d08"
+      "revision": "sha256:258d3da0b37e42c2"
     },
     {
       "id": "m2",
-      "revision": "sha256:30960f6dbb6e6b16"
+      "revision": "sha256:a5e6d29e860117a7"
     },
     {
       "id": "m3",
-      "revision": "sha256:4d7a0464d603c84d"
+      "revision": "sha256:dedcfbf6adb3c260"
     },
     {
       "id": "m14",
-      "revision": "sha256:ac0e56a94feb604b"
+      "revision": "sha256:58c52bb2563562e1"
     },
     {
       "id": "m6",
-      "revision": "sha256:61bf9a9595fc518a"
+      "revision": "sha256:c1c340e544968ba9"
     },
     {
       "id": "m7",

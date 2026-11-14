@@ -17,11 +17,11 @@
     const x=time(a),y=time(b);
     return x>y?a:y>x?b:stable(a)>=stable(b)?a:b;
   }
-  function union(a,b,key){
+  function union(a,b,key,resolve=newer){
     const map=new Map();
     for(const x of [...(a||[]),...(b||[])]){
       const k=key(x);
-      map.set(k,newer(map.get(k),x));
+      map.set(k,resolve(map.get(k),x));
     }
     return [...map.values()].sort((a,b)=>key(a).localeCompare(key(b)));
   }
@@ -45,12 +45,14 @@
         ...x,...y,...newer(x,y,recent),attempts:union(x.attempts,y.attempts,x=>x.t),feedback:union(x.feedback,y.feedback,x=>`${x.t}|${x.from}|${x.text}`)
       };
       for(const field of ['draft','notes','reset'])if(x[field]||y[field])out.items[id][field]=newer(x[field],y[field]);
+      if(x.notesArchive||y.notesArchive)out.items[id].notesArchive=union(x.notesArchive,y.notesArchive,x=>x.t,(a,b)=>newer(a,b,x=>x.text.length));
       // Notes/drafts cannot replace a schedule. A reset clears older schedules,
       // while a subsequent attempt can schedule the item again.
       const reviewTime=item=>[item.reset?.t||'',...(item.attempts||[]).map(a=>a.t)].sort().at(-1)||'';
       const reviewed=newer(x,y,reviewTime);
       if('review' in reviewed)out.items[id].review=reviewed.review;
       const item=out.items[id];
+      if(item.notes&&item.notesArchive?.some(note=>note.t===item.notes.t))delete item.notes;
       if(item.reset&&!item.attempts.some(a=>Date.parse(a.t)>=Date.parse(item.reset.t)))item.review=null;
     }
     for(const field of ['labs','feedbackRequests','answers','commentLifecycle'])if(a[field]||b[field]){

@@ -178,18 +178,37 @@
     if(notesRefreshers.has(el))return;
     const key=el.dataset.notesKey,[collection,id]=key.split(':'),notes=$('.reasoning-notes',el),line=$('.reasoning-status',el);
     if(!notes||!id||!['items','labs'].includes(collection))return;
-    let signature=null;
-    if(review){view=document.createElement('div');view.className='review-reasoning';el.append(view);}
+    const sessionStart=Date.now(),initial=store.get([collection,id,'notes']);
+    const isEarlier=note=>note&&(note.t===initial?.t||Date.parse(note.t)<=sessionStart);
+    const earlier=review&&typeof initial?.text==='string'&&initial.text.trim()&&isEarlier(initial)?initial:null;
+    let signature=null,started=false;
+    if(review){
+      view=document.createElement('div');view.className='review-reasoning';view.hidden=true;el.append(view);
+      const card=el.closest('[data-kind]');
+      card?.addEventListener('study:review-commit',()=>{
+        if(!earlier||!view.hidden)return;
+        const details=document.createElement('details');details.className='previous-reasoning';details.open=false;
+        const label=['exercise','challenge'].includes(card.dataset.kind)?'Your earlier scratch work':'Your earlier reasoning';
+        details.innerHTML=`<summary>${label} · ${esc(new Date(earlier.t).toLocaleString())}</summary><div class="notebook-answer">${preview(earlier.text)}</div>`;
+        view.append(details);view.hidden=false;
+      });
+    }
     function restore(){
       const record=store.get([collection,id])||{},next=JSON.stringify(record.notes);
       if(!notesBuffer.has(key)&&next!==signature){
-        signature=next;notes.value=record.notes?.text||'';
-        pendingSaves.delete(line);text(line,record.notes?`Saved ${new Date(record.notes.t).toLocaleString()}`:'');
-        if(view)view.innerHTML=reasoningHTML(record);
+        const current=review&&isEarlier(record.notes)?null:record.notes;
+        signature=next;notes.value=current?.text||'';
+        pendingSaves.delete(line);text(line,current?`Saved ${new Date(current.t).toLocaleString()}`:'');
+        if(view&&!review)view.innerHTML=reasoningHTML(record);
       }
     }
     notes.addEventListener('input',()=>{
       pendingSaves.delete(line);text(line,'Saving reasoning…');notesBuffer.queue(key,notes.value);
+      // Queue first so the archive's synchronous notification cannot erase this input.
+      if(review&&!started){
+        started=true;
+        if(isEarlier(store.get([collection,id,'notes'])))store.archiveNotes(id);
+      }
     });
     notes.addEventListener('blur',()=>{
       if(data.page==='notebook')setTimeout(()=>{notesBuffer.flush(key);notebook();},0);
@@ -275,6 +294,7 @@
         committed=true;
         const attempt=store.recordAttempt(el.id,{type:kind,response:value,correct:result.correct});restoredAttempt=attempt.t;
         show(value,result);
+        if(review)el.dispatchEvent(new CustomEvent('study:review-commit',{bubbles:true}));
         el.dispatchEvent(new CustomEvent('study:attempt',{bubbles:true}));
       }));
       function reset(){
@@ -345,6 +365,7 @@
         dirty=true;
         const result=record?store.saveAnswer(el.id,textarea.value):(store.saveDraft(el.id,textarea.value),null);
         dirty=false;savedLocally(saveStatus);refreshSupport();
+        if(review&&record)el.dispatchEvent(new CustomEvent('study:review-commit',{bubbles:true}));
         if(result?.recorded)el.dispatchEvent(new CustomEvent('study:attempt',{bubbles:true}));
         return true;
       }
@@ -513,7 +534,7 @@
     const labs=Object.entries(store.get('labs')||{}).filter(([id,lab])=>lab.notes&&(!data.release||data.targets?.[id]));
     // Note content refreshes in place, preserving focus, selections and context links.
     // Only changes to the surrounding record require rebuilding the notebook.
-    const visibleItems=Object.entries(items).filter(([,item])=>item.draft||item.notes||item.attempts?.length||item.feedback?.length);
+    const visibleItems=Object.entries(items).filter(([,item])=>item.draft||item.notes||item.notesArchive?.length||item.attempts?.length||item.feedback?.length);
     const signature=JSON.stringify([visibleItems.map(([id,{notes,updated,...item}])=>[id,item]),labs.map(([id])=>id),store.get('comments'),store.get('answers'),store.get('commentLifecycle')]);
     if(signature===notebook.signature)return;
     notebook.signature=signature;
@@ -526,7 +547,7 @@
       section.innerHTML=`<h2>${esc(mod.title)}</h2>`;
       let n=0;
       for(const [id,item] of Object.entries(items).filter(([id,x])=>(itemIndex[id]?.module||x.module)===mod.id&&(!data.release||itemIndex[id]))){
-        if(!item.draft&&!item.notes&&!item.attempts?.length&&!item.feedback?.length)continue;
+        if(!item.draft&&!item.notes&&!item.notesArchive?.length&&!item.attempts?.length&&!item.feedback?.length)continue;
         n++;
         const node=document.createElement('article');
         node.className='notebook-entry';
@@ -535,6 +556,10 @@
         const archived=StudyPractice.notebookAttempts(item,{archived:true});
         node.innerHTML=`<h3><a href="${esc(mod.id)}.html#${esc(id)}">${esc(info.title||id)}</a></h3>${item.draft?`<p class="eyebrow">Saved answer</p><div class="notebook-answer">${preview(item.draft.text)}</div>`:''}${renderAttempts(StudyPractice.notebookAttempts(item))}${archived.length?`<details class="archived-forecasts"><summary>Earlier forecasts (reset)</summary>${renderAttempts(archived)}</details>`:''}${(item.feedback||[]).map(f=>`<div class="callout"><strong>Feedback from ${esc(f.from)}</strong><p>${preview(f.text)}</p><time>${esc(f.t)}</time></div>`).join('')}`;
         appendReasoningEditor(node,'items:'+id,['exercise','challenge'].includes(info.type||item.type)?'Scratch work (kept apart from your answer; never sent for feedback)':'Your reasoning');
+        if(item.notesArchive?.length){
+          const archive=document.createElement('details');archive.className='archived-reasoning';archive.open=false;
+          archive.innerHTML='<summary>Earlier reasoning</summary>'+item.notesArchive.map(notes=>reasoningHTML({notes})).join('');node.append(archive);
+        }
         section.append(node);
       }
       for(const q of store.comments().filter(q=>q.kind==='question'&&q.module===mod.id)){
@@ -657,6 +682,61 @@
     if(window.ResizeObserver){const ro=new ResizeObserver(all);wraps.forEach(w=>ro.observe(w));}
     window.addEventListener('resize',all);document.addEventListener('toggle',all,true);document.addEventListener('study:layout',all);
     all();
+  })();
+  // Figure generators fix each label's width with textLength for one system font; lengthAdjust then stretches or
+  // squeezes the reader's own glyphs to that width. Set labels at natural advances, shrink a label uniformly only
+  // when it would overrun its budget, and re-seat a superscript whose dx undoes the budget of the subscript before it.
+  window.StudyFigureText=(function installFigureText(){
+    const scaled=(value,k)=>value.trim().split(/[\s,]+/).map(v=>+(parseFloat(v)*k).toFixed(3)).join(' ');
+    const fit=svg=>{
+      if(svg.dataset.textFit)return true;
+      const runs=[...svg.querySelectorAll('[textLength]')].filter(e=>!e.closest('defs,clipPath,mask,pattern,marker'));
+      if(!runs.length){svg.dataset.textFit='none';return true;}
+      const budget=new Map(runs.map(e=>[e,parseFloat(e.getAttribute('textLength'))||0]));
+      runs.forEach(e=>e.removeAttribute('textLength'));
+      const natural=new Map(runs.map(e=>[e,e.getComputedTextLength()]));
+      // Not laid out yet (a closed panel, say): keep the budgets and try again when it shows.
+      if(runs.some(e=>!(natural.get(e)>0)&&e.textContent.trim())){runs.forEach(e=>e.setAttribute('textLength',budget.get(e)));return false;}
+      const stacks=[],shrunk=[];
+      const shrink=(text,k)=>{
+        if(!text.hasAttribute('font-size'))text.setAttribute('font-size',parseFloat(getComputedStyle(text).fontSize));
+        for(const e of [text,...text.querySelectorAll('tspan')]){
+          for(const a of ['font-size','dx','dy'])if(e.hasAttribute(a))e.setAttribute(a,scaled(e.getAttribute(a),k));
+          if(e.style.fontSize)e.style.fontSize=parseFloat(e.style.fontSize)*k+'px';
+        }
+        text.dataset.textScale=+((parseFloat(text.dataset.textScale)||1)*k).toFixed(3);
+      };
+      for(const text of new Set(runs.map(e=>e.closest('text')||e))){
+        const own=runs.filter(e=>e===text||text.contains(e)),outer=own.filter(e=>!own.some(o=>o!==e&&o.contains(e)));
+        const want=outer.reduce((n,e)=>n+budget.get(e),0),have=outer.reduce((n,e)=>n+natural.get(e),0),k=have>want*1.01?want/have:1;
+        const spans=[...text.children].filter(e=>e.localName==='tspan');
+        spans.forEach((e,i)=>{
+          const sub=spans[i-1],dx=parseFloat(e.getAttribute('dx')),next=spans[i+1];
+          if(sub&&budget.has(sub)&&dx<0&&Math.abs(dx+budget.get(sub))<.01)
+            stacks.push({sub,sup:e,next,text,rest:next?(parseFloat(next.getAttribute('dx'))||0)-Math.max(0,budget.get(sub)-(budget.get(e)||0)):0});
+        });
+        if(k<1){shrink(text,k);shrunk.push({text,outer,want});}
+      }
+      // Optical sizes widen small glyphs, so one proportional step can leave a label slightly long.
+      const again=shrunk.map(g=>g.outer.reduce((n,e)=>n+e.getComputedTextLength(),0));
+      shrunk.forEach((g,i)=>{if(again[i]>g.want*1.005)shrink(g.text,g.want/again[i]);});
+      const widths=stacks.map(s=>[s.sub.getComputedTextLength(),s.sup.getComputedTextLength()]);
+      stacks.forEach((s,i)=>{const [w,v]=widths[i];s.sup.dataset.textStack='';s.sup.setAttribute('dx',+(-w).toFixed(3));if(s.next)s.next.setAttribute('dx',+(Math.max(0,w-v)+s.rest*(parseFloat(s.text.dataset.textScale)||1)).toFixed(3));});
+      runs.forEach(e=>{e.dataset.textBudget=budget.get(e);});
+      svg.dataset.textFit='fitted';return true;
+    };
+    const watched=new WeakSet();
+    const io=window.IntersectionObserver?new IntersectionObserver(entries=>{for(const x of entries)if(x.isIntersecting&&fit(x.target))io.unobserve(x.target);},{rootMargin:'1200px 0px'}):null;
+    const scan=()=>{for(const svg of document.querySelectorAll('.figure-scroll>svg:not([data-text-fit])'))if(!watched.has(svg)){watched.add(svg);if(io)io.observe(svg);else fit(svg);}};
+    // A panel that opens re-enters the observer; review items arrive after load.
+    document.addEventListener('toggle',()=>{for(const svg of document.querySelectorAll('.figure-scroll>svg:not([data-text-fit])'))if(io){io.unobserve(svg);io.observe(svg);}},true);
+    let queued=false;
+    if(window.MutationObserver)new MutationObserver(records=>{
+      if(queued||!records.some(r=>[...r.addedNodes].some(n=>n.nodeType===1&&!(n instanceof SVGElement))))return;
+      queued=true;requestAnimationFrame(()=>{queued=false;scan();});
+    }).observe(document.body,{childList:true,subtree:true});
+    scan();
+    return {fit,fitAll:()=>[...document.querySelectorAll('.figure-scroll>svg')].filter(s=>s.getClientRects().length).map(fit).filter(Boolean).length};
   })();
   async function followHash(){
     let id;try{id=decodeURIComponent(location.hash.slice(1));}catch{return;}
