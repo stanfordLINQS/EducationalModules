@@ -132,18 +132,21 @@
     });
     const branches = ctx.plot(layout.plots, {
       title: 'Syndrome probabilities and unprotected fidelity',
-      x: { label: 'Rotation angle θ (rad)', domain: [0, 3.142] },
+      x: { label: 'Rotation angle θ/π', domain: [0, 1] },
       y: { label: 'Probability or pure-state fidelity', domain: [0, 1.05] }, legend: true
     });
     function draw() {
-      const result = ctx.model.compute(ctx.state.all());
+      // Local patch: angle sliders are in units of pi; the model takes radians.
+      const values = ctx.state.all();
+      const result = ctx.model.compute({ ...values, theta: values.theta * Math.PI, polar: values.polar * Math.PI, azimuth: values.azimuth * Math.PI });
       ctx.warn(layout.notes, result.warnings.join(' ') || null);
+      window.LocalBloch?.update(layout.plots, result);
       if (!result.valid) {
         amplitudes.update([]); branches.update([]);
         ctx.readouts(layout.readouts, []); ctx.notes(layout.notes, ''); return;
       }
       const { params: p, series: s, readouts: r } = result, [clean, flag] = result.branches;
-      const bits = flag.syndrome.join('');
+      const bits = flag.syndrome.join(''), perPi = pts => pts.map(([x, y]) => [x / Math.PI, y]);
       // Small horizontal offsets separate overlapping stems; basis indices stay integer ticks.
       const stems = (points, offset) => points.map(([x, y]) => [x + offset, 0, x + offset, y]);
       amplitudes.update([
@@ -152,13 +155,13 @@
         { id: 'flag-state', label: `Conditional s=${bits}${flag.state ? '' : ' (impossible)'}`, role: 'tertiary', kind: 'arrows', head: 0, dash: '2 3', points: stems(s.branchProbabilities[1], 0.15) }
       ]);
       branches.update([
-        { id: 'clean-probability', label: 'P(s=00) = cos²(θ/2)', role: 'secondary', kind: 'line', dash: '6 3', points: s.clean },
-        { id: 'flag-probability', label: `P(s=${bits}) = sin²(θ/2)`, role: 'tertiary', kind: 'line', dash: '2 3', points: s.flagged },
-        { id: 'bare-fidelity', label: 'Unprotected single-qubit fidelity', role: 'reference', kind: 'line', dash: '10 3 2 3', points: s.unprotected }
-      ], [{ type: 'vline', x: p.theta, role: 'accent', label: 'Current θ' },
-        { type: 'point', x: p.theta, y: clean.probability, role: 'secondary' },
-        { type: 'point', x: p.theta, y: flag.probability, role: 'tertiary' },
-        { type: 'point', x: p.theta, y: r.unprotectedFidelity, role: 'reference' }]);
+        { id: 'clean-probability', label: 'P(s=00) = cos²(θ/2)', role: 'secondary', kind: 'line', dash: '6 3', points: perPi(s.clean) },
+        { id: 'flag-probability', label: `P(s=${bits}) = sin²(θ/2)`, role: 'tertiary', kind: 'line', dash: '2 3', points: perPi(s.flagged) },
+        { id: 'bare-fidelity', label: 'Unprotected single-qubit fidelity', role: 'reference', kind: 'line', dash: '10 3 2 3', points: perPi(s.unprotected) }
+      ], [{ type: 'vline', x: p.theta / Math.PI, role: 'accent', label: 'Current θ' },
+        { type: 'point', x: p.theta / Math.PI, y: clean.probability, role: 'secondary' },
+        { type: 'point', x: p.theta / Math.PI, y: flag.probability, role: 'tertiary' },
+        { type: 'point', x: p.theta / Math.PI, y: r.unprotectedFidelity, role: 'reference' }]);
       const conditional = x => x === null ? 'Undefined (zero probability)' : x;
       ctx.readouts(layout.readouts, [
         { label: 'Computed P(s=00)', value: clean.probability, format: 'sig', digits: 8 },
@@ -177,10 +180,10 @@
         { label: `S₁, S₂ eigenvalues in s=${bits} sector`, value: flag.eigenvalues.map(x => x > 0 ? '+1' : '-1').join(', ') }
       ]);
       ctx.notes(layout.notes,
-        '<p><strong>Predict, then inspect:</strong> At θ=0.2, predict the flagged probability before comparing with the computed readout. Try Quarter turn and Full flip, then turn correction off. Change the logical Bloch angles and explain which probabilities stay fixed.</p>' +
+        '<p><strong>Predict, then inspect:</strong> At θ=0.2 rad (θ/π≈0.064), predict the flagged probability before comparing with the computed readout. Try Quarter turn and Full flip, then turn correction off. Change the logical Bloch angles and explain which probabilities stay fixed.</p>' +
         `<p>Stems show the rotated state and the two normalized post-measurement states before correction. They are offset by -0.15, 0, and +0.15 basis-index units to separate overlaps. Conditional probabilities each sum to 1; multiply them by their branch weight to recover the rotated basis probabilities. The correction switch changes the fidelity readouts, not these pre-correction stems.</p>` +
         `<p>Syndrome order is (Z₁Z₂, Z₂Z₃), with bit 0 for eigenvalue +1. Rotation on qubit ${p.qubit} flags s=${bits}. Measurement learns parity, while preserving the encoded amplitudes inside each branch. The displayed reduced state belongs to the original encoded state; rotating qubit 1 can create off-diagonal elements before measurement.</p>` +
-        '<p>The unprotected comparison acts on one unencoded qubit with the same Bloch angles. An X eigenstate changes only by a global phase, so its fidelity stays 1 even at θ=π. The preset angles are rounded numeric values; Full flip uses 3.1416 rad and can retain a tiny clean-branch probability.</p>');
+        '<p>The unprotected comparison acts on one unencoded qubit with the same Bloch angles. An X eigenstate changes only by a global phase, so its fidelity stays 1 even at θ=π. Angle sliders are in units of π; Full flip is exactly θ=π, so the clean branch is impossible.</p>');
     }
     const unsubscribe = ctx.state.onChange(draw), unsubscribeTheme = ctx.onThemeChange(draw);
     draw();
